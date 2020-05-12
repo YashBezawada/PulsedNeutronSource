@@ -1,0 +1,230 @@
+#TEST
+/random/setSeeds 575841909 838392900
+/control/verbose 2
+/run/verbose 2
+/tracking/verbose 0
+/run/initialize
+/process/list
+/gun/particle neutron
+#==================== Analysis ========================
+/analysis/h1/set 0  100  0. 100. none	#nb colli >1eV
+/analysis/h1/set 1  100  0. 100. cm	#track len >1eV
+/analysis/h1/set 2  100  0. 5. us	#time of flight >1eV
+/analysis/h1/set 3  100  0. 1000. none	#nb colli <1eV
+/analysis/h1/set 4  100  0. 500. cm	#track len <1eV
+/analysis/h1/set 5  100  0. 1000. us	#time of flight <1eV
+/analysis/h1/set 6  3000  0 3 MeV none  #log #step energy of the primary neutron
+/analysis/h1/set 7  3000  1e-8 3 MeV none  log #neutron entering moderator
+/analysis/h1/set 8  3000  1e-8 3 MeV none  log #neutron entering filter 1
+/analysis/h1/set 9  3000  1e-8 3 MeV none  log #neutron entering filter 2
+/analysis/h1/set 10 3000  1e-8 3 MeV none log #neutron entering filter 3
+/analysis/h1/set 11 3000  1e-8 3 MeV none log #neutron entering thermal absorber
+/analysis/h1/set 12 3000  1e-8 3 MeV none log #neutron from thermal absorber to port
+/analysis/h1/set 13 3000  1e-8 3 MeV none log #neutron from membrane to gas buffer
+/analysis/h1/set 14 3000  1e-8 3 MeV none log #neutron entering lAr pool
+/analysis/h1/set 15  360  -180 180 degree #DD gun initial momentum angle distribution
+/analysis/h1/set 16  360  -180 180 degree #Theta angle for neutrons leaving the absorber
+/analysis/h1/set 17  360  -180 180 degree #Phi angle for neutrons leaving the absorber
+/analysis/h1/set 18  360  -180 180 degree #Theta angle for neutrons entering LAr Pool
+/analysis/h1/set 19  360  -180 180 degree #Phi angle for neutrons entering LAr Pool
+/analysis/h1/set 20  200  0 2000 us #neutron capture time after DD pulse  
+/analysis/h2/set 0 60 -30 30 m none linear 16 -8 8 m none linear #neutron capture position in LAr TPC y:x (top view)
+/analysis/h2/set 1 60 -30 30 m none linear 16 -8 8 m none linear #neutron capture position in LAr TPC z:x (side view)
+
+/analysis/ntuple/setActivationToAll true
+
+#===================== run test ==================================# 
+# log x bin
+/random/setSeeds 575841955 838392955
+/control/verbose 2
+/run/verbose 2
+/tracking/verbose 0
+/run/initialize
+/process/list
+/gun/particle neutron
+
+
+#/analysis/setFileName test     
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial G4_Fe                                                       
+#/ddsource/det/SetFilter1Material G4_Fe                                   
+#/ddsource/det/SetFilter2Material G4_Al                               
+#/ddsource/det/SetFilter3Material G4_S   
+##/ddsource/det/SetAbsorberMaterial G4_B                                                                                                            
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 1000000
+
+#/analysis/setFileName 2.5MeV_old 
+#/gun/energy 2.5 MeV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+
+#/analysis/setFileName 73keV_old
+#/gun/energy 73 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+#
+#/analysis/setFileName 24keV_old 
+#/gun/energy 24 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+#
+#/analysis/setFileName 57keV_old
+#/gun/energy 57 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+
+#/analysis/setFileName 24keV_nobug_AR_test.root
+#/gun/energy 24 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 20
+#
+#/analysis/setFileName 73keV_nobug_AR_test.root
+#/gun/energy 73 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+#
+#/analysis/setFileName 57keV_nobug_AR_test.root
+#/gun/energy 57 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+#
+
+#/analysis/setFileName 73keV_captime_test.root
+#/gun/energy 73 keV   
+#/ddsource/det/SetReflectorMaterial G4_Pb                                                
+#/ddsource/det/SetModeratorMaterial Vacuum                                                      
+#/ddsource/det/SetFilter1Material Vacuum                                     
+#/ddsource/det/SetFilter2Material Vacuum                                
+#/ddsource/det/SetFilter3Material Vacuum   
+#/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+#/ddsource/det/SetReflectorThickness 20 cm
+#/ddsource/det/SetModeratorThickness 30 cm
+#/ddsource/det/SetFilter1Height 10 cm                                   
+#/ddsource/det/SetFilter2Height 10 cm                                
+#/ddsource/det/SetFilter3Height 5 cm 
+#/ddsource/det/SetAbsorberHeight 3 cm                           
+#/primary/updateGunPosition                                         
+#/run/printProgress 1000                                              
+#/run/beamOn 100000
+
+
+/analysis/setFileName 2.5MeV_captime_Poly.root
+/gun/energy 2.5 MeV   
+/ddsource/det/SetReflectorMaterial G4_Pb                                                
+/ddsource/det/SetModeratorMaterial Vacuum                                                      
+/ddsource/det/SetFilter1Material Vacuum                                     
+/ddsource/det/SetFilter2Material Vacuum                                
+/ddsource/det/SetFilter3Material Vacuum   
+/ddsource/det/SetAbsorberMaterial Vacuum                                                                                                             
+/ddsource/det/SetReflectorThickness 20 cm
+/ddsource/det/SetModeratorThickness 30 cm
+/ddsource/det/SetFilter1Height 10 cm                                   
+/ddsource/det/SetFilter2Height 10 cm                                
+/ddsource/det/SetFilter3Height 5 cm 
+/ddsource/det/SetAbsorberHeight 3 cm                           
+/primary/updateGunPosition                                         
+/run/printProgress 1000                                              
+/run/beamOn 100000
+
+
+
+                                                                     

@@ -63,7 +63,8 @@ DetectorConstruction::DetectorConstruction()
 {
   fWorldSize = 80*m;
   DefineMaterials();
-  SetWorldMaterial("Air");
+  SetWorldMaterial("G4_AIR");
+  
 //  // ProtoDUNE Lar pool  
 //  fPoolLength      = 8.9*m;
 //  fPoolWidth      = 7.8*m;
@@ -226,7 +227,7 @@ void DetectorConstruction::DefineMaterials()
   G4Material* MgF2 = new G4Material("MgF2", 3.15*g/cm3, ncomponents=2, kStateSolid);
   MgF2->AddElement(Mg, natoms=1);
   MgF2->AddElement(F, natoms=2);
-      
+  
   // TiF3
   G4Material* TiF3 = new G4Material("TiF3", 3.4*g/cm3, ncomponents=2, kStateSolid);
   TiF3->AddElement(Ti, natoms=1);
@@ -318,8 +319,9 @@ void DetectorConstruction::DefineMaterials()
 //  fInsulatorMater->AddElement(N, 2);
 //  fInsulatorMater->AddElement(O, 4); 
   
-  //fInsulatorMater = LiPoly; // insulator material: Lithium Polyethylene
-  fInsulatorMater =  man->FindOrBuildMaterial("G4_POLYETHYLENE"); // insulator material: pure Polyethylene
+  fInsulatorMater = LiPoly; // insulator material: Lithium Polyethylene
+  //fInsulatorMater =  man->FindOrBuildMaterial("G4_POLYETHYLENE"); // insulator material: pure Polyethylene
+  
   // Feedthrough port
   fPortMater = man->FindOrBuildMaterial("G4_AIR");
   // feedthrough port reflector
